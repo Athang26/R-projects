@@ -1,0 +1,55 @@
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+data<- read.csv("/content/datalab_export_2025-10-20 10_01_45.csv")
+
+print(data)
+
+null_items<- is.na(data)
+
+print(null_items)
+
+columnn<- colSums(is.na(data))
+
+print(columnn)
+
+print(head(data))
+
+print(tail(data))
+
+ggplot(data, aes(x= X, y= Y, group= 1))+
+  geom_line(color= "red")+
+  geom_point(size= 2)+
+  labs(title= "Shooter", x= "x axis", y= "y axis")+
+  theme_classic()
+
+ggplot(data, aes(x= SCORE, fill= RANGE))+
+  geom_bar(position= "stack")+
+  labs(title = "Stack", x= "score of the player", y= "range of the player")+
+  theme_classic()
+
+ggplot(data, aes(x= DEFENDER, fill= SCORE))+
+  geom_bar(position= "fill")+
+  labs(title = "Fill", x= "Defender", y= "Score of the player")+
+  theme_classic()
+
+ggplot(data, aes(x= DEFENDER, fill= SCORE))+
+  geom_bar(position= "dodge")+
+  labs(title = "Dodge", x= "Defender", y= "Score of the player")+
+  theme_classic()
+
+ggplot(data, aes(x= SHOOTER, fill= RANGE))+
+  geom_bar(position= "dodge")+
+  labs(title = "Dodge", x= "SHOOTER", y= "Range of the player")+
+  theme_classic()
+
+ggplot(data, aes(x= SHOOTER, fill= DEFENDER))+
+  geom_bar(position= "dodge")+
+  labs(title = "Dodge", x= "SHOOTER", y= "DEFENDER")+
+  theme_classic()
+
+ggplot(data, aes(x= RANGE, fill= SCORE))+
+  geom_bar(position ="identity", alpha = 0.5)+
+  labs(title = "Identity ", x= "Range of the shooter", y= "Score made by the player")+
+  theme_classic()
+
