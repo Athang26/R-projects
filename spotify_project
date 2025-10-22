@@ -1,0 +1,94 @@
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+
+data<- read.csv("/content/datalab_export_2025-10-12 19_24_58.csv")
+
+
+data
+
+df<- data.frame(data)
+
+nul_values <- is.na(data)
+print(nul_values)
+
+coll <- colSums(is.na(data))
+
+print(coll)
+
+head(data)
+tail(data)
+
+str(data)
+
+ggplot(df, aes(x= top.genre, y= year))+
+  geom_point()+
+  labs(
+  title= "top genre in each year",
+  x= "top genre",
+  y= "year"
+  )+
+    theme_minimal()
+
+ggplot(df, aes(x= artist, fill= title))+
+  geom_point()+
+  labs(
+  title= "top genre in each year",
+  x= "top genre",
+  y= "year"
+  )+
+    theme_minimal()
+
+ggplot(df, aes(x= title, y = year))+
+  geom_point(color = "red",size = 2)+
+  theme_minimal()+
+  labs(title = "Scaterr plot", x= "year", y= "bmp")
+
+
+ggplot(data, aes(x = bpm, y = year)) +
+  #geom_line(color = "blue", size = 1) +
+  geom_point(color = "darkblue") +
+  theme_minimal() +
+  labs(title = "BMP over Years",
+       x = "Year",
+       y = "BMP Value")
+
+ggplot(data,aes( x= title, fill=dnce))+
+  geom_bar(color= "red")+
+  labs(title = "barplot",
+      x= "title",
+      y= "dance")+
+  theme_bw()
+
+ggplot(data, aes(x= pop, fill= year))+
+  geom_histogram(color= "pink", binwidth = 2)+
+  facet_wrap(~year)
+  labs(title = "histogram",
+       x= "pop",
+       y= "year")+
+  theme_gray()
+
+ggplot(data, aes(x = title, fill = artist)) +
+  geom_bar(width = 1) +
+  coord_polar(theta = "y") +
+  theme_void() +
+  labs(title = "Distribution of Regions")
+
+ggplot(data, aes(x = artist)) +
+  geom_bar(fill = "lightblue") +
+  coord_flip() +
+  labs(title = "Songs by Artist")
+
+ggplot(data, aes(x = year)) +
+  geom_histogram(binwidth = 1, fill = "tomato", color = "white") +
+  labs(title = "Number of Songs per Year")
+
+ggplot(df, aes(x = title, y = year)) +
+  geom_point(color = "red", size = 2)
+
+ggplot(data, aes(x = year, y = bpm)) +
+  geom_point(color = "darkblue") +
+  geom_smooth(method = "lm", color = "red") +
+  labs(title = "BPM Trend Over Years")
+
+
